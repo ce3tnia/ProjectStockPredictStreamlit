@@ -19,7 +19,6 @@ today = date.today()
 before = today - timedelta(days=4500)
 start_date = st.sidebar.date_input('Start date', before)
 end_date = st.sidebar.date_input('End date', today)
-dates = timedelta(days=60)
 predict = st.sidebar.button('Predict')
 st.sidebar.info('''This Project is used for only learning and development process. I don't encourage anyone 
 to invest in stock based on any data represented here.😊👩🏻‍🎓👩🏻‍💻''')
