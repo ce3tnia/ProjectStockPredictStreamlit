@@ -4,6 +4,10 @@ from datetime import date, timedelta
 from utils import *
 import yfinance as yf
 
+html = """\
+<meta name="dicoding:email" content="ceciliatania03@gmail.com">
+"""
+
 st.set_page_config(
     page_title='Apple Stock Prediction',
     page_icon='📈',
