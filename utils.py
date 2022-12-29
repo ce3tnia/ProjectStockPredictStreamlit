@@ -121,11 +121,11 @@ def proccess(dataset, stock, option):
     
     # load model
     if option == 'AAPL':
-        model = load_model('modelaapl.h5')
+        model = load_model('modelaapl.h5', compile=False)
     elif option == 'APC.F': 
-        model = load_model('modelf.h5')
+        model = load_model('modelf.h5', compile=False)
     else:
-        model = load_model('modelmx.h5')
+        model = load_model('modelmx.h5', compile=False)
 
     # modelpredict
     y_low_pred, y_open_pred, y_close_pred, y_high_pred = model.predict(X_test)
