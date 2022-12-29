@@ -2,10 +2,9 @@ import streamlit as st
 from plotly import graph_objs as go 
 import math
 from sklearn.metrics import mean_squared_error, mean_absolute_error
-import numpy as np 
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-from tensorflow.python.keras.models import load_model
+from tensorflow.keras.models import load_model
 import base64
 
 low = 0
@@ -67,20 +66,20 @@ def csvdata(option, stock, y_pred):
 def evaluation(unscaled_y, y_pred, indexc, len_data):
     mae = mean_absolute_error(unscaled_y[:,indexc], y_pred[:,indexc])
     rmse = math.sqrt(mean_squared_error(unscaled_y[:,indexc], y_pred[:,indexc]))
-    mape = np.mean(np.abs((unscaled_y[:,indexc] - y_pred[:,indexc])/unscaled_y[:,indexc]))*100
+    mape = mean(abs((unscaled_y[:,indexc] - y_pred[:,indexc])/unscaled_y[:,indexc]))*100
 
     prermspe = ((y_pred[:,indexc] - unscaled_y[:,indexc])/unscaled_y[:,indexc])
-    rmspe_data = np.array([None]*len(len_data))
+    rmspe_data = array([None]*len(len_data))
     for i in range(len(len_data)):
         rmspe_data[i] = math.pow(prermspe[i],2)
-    rmspe = math.sqrt(np.mean(rmspe_data))*100
+    rmspe = math.sqrt(mean(rmspe_data))*100
     st.write('MAE:', mae, '  \nRMSE:', rmse, '  \nMAPE:', mape, '  \nRMSPE:', rmspe)
 
 def forcast(model, normalizedData, num_data, y_normaliser):
     data_pred = normalizedData[num_data-200:,:5].reshape(5,40,5)
     ylow,yopen,yclose,yhigh = model.predict(data_pred[[4]])
     yhat = ylow,yopen,yclose,yhigh
-    nextday_pred = np.hstack((yhat))
+    nextday_pred = hstack((yhat))
     nextday_pred = y_normaliser.inverse_transform(nextday_pred)
     nextday_pred = {'Low':nextday_pred[0][0], 'Open':nextday_pred[0][1], 'Close':nextday_pred[0][2], 'High':nextday_pred[0][3]}
     st.write('🙌🏻Next day stock price forecast:', nextday_pred)
@@ -129,7 +128,7 @@ def proccess(dataset, stock, option):
 
     # modelpredict
     y_low_pred, y_open_pred, y_close_pred, y_high_pred = model.predict(X_test)
-    testpreds_arr = np.hstack((y_low_pred, y_high_pred, y_open_pred, y_close_pred))
+    testpreds_arr = hstack((y_low_pred, y_high_pred, y_open_pred, y_close_pred))
     y_pred = y_normaliser.inverse_transform(testpreds_arr)
 
     visual_actpred_data()
