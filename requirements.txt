@@ -3,7 +3,7 @@ pandas
 matplotlib
 tensorflow==2.6.0
 keras==2.6.0
-yfinance==0.1.63
+yfinance
 scikit-learn
 plotly
 streamlit
