@@ -4,5 +4,5 @@ matplotlib
 tensorflow==2.6.0
 Keras==2.6.0
 yfinance==0.1.63
-scikit-learn==0.22.1
-plotly==5.3.1
+scikit-learn
+plotly
