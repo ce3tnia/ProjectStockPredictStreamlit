@@ -5,7 +5,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error
 import numpy as np 
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-from tensorflow.keras.models import load_model
+from tensorflow.python.keras.models import load_model
 import base64
 
 low = 0
