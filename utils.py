@@ -5,7 +5,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error
 import numpy as np 
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 import base64
 
 low = 0
@@ -121,11 +121,11 @@ def proccess(dataset, stock, option):
     
     # load model
     if option == 'AAPL':
-        model = load_model('modelaapl.h5', compile=False)
+        model = load_model('modelaapl.h5')
     elif option == 'APC.F': 
-        model = load_model('modelf.h5', compile=False)
+        model = load_model('modelf.h5')
     else:
-        model = load_model('modelmx.h5', compile=False)
+        model = load_model('modelmx.h5')
 
     # modelpredict
     y_low_pred, y_open_pred, y_close_pred, y_high_pred = model.predict(X_test)
