@@ -6,3 +6,4 @@ yfinance
 scikit-learn
 plotly
 typing-extensions
+python==3.8.2
